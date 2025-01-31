@@ -1,6 +1,6 @@
 # Expo Project Setup Guide
 
-This guide will walk you through setting up a new **Expo** project in React Native with the required packages, file structure, and API integration.
+This guide will walk you through setting up a new **Expo** project in React Native with the required packages, file structure, and ScoreBoard App
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ npx expo
 ```
 ## Installed Packages
 
-Below are the packages installed in the project:
+Below are the packages installed in the project for scoreboard app:
 
 ```json
 {

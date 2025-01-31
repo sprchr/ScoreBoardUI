@@ -20,7 +20,7 @@ export default function index() {
   const [games,setGames] = useState<any[]>([])
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(0);
   const router = useRouter();
-  const gameName = "Poker"
+  const [gameName,setGameName] = useState<string>('')
   async function fetchGames() {
     const response = await axios.get("https://scoreboard-backend-green.vercel.app/games")
     setGames(response.data)
@@ -58,6 +58,7 @@ export default function index() {
         // Handle success (response can be checked here if needed)
         if (response.status === 201) {
           await fetchGames()
+          setGameName('')
            Alert.alert("Game created successfully","click on game to navigate to scorecard")
         } else {
           Alert.alert("Error", "There was an issue submitting the scorecard.");
@@ -71,6 +72,7 @@ export default function index() {
   }
   return (
     <SafeAreaView>
+      <View>
       <View style={styles.inputContainer}>
         <Text style={styles.inputHeading}>Enter the Number of players:</Text>
         <TextInput
@@ -81,7 +83,20 @@ export default function index() {
             setNumberOfPlayers(Number(num));
           }}
           value={numberOfPlayers.toString()}
-        />
+          />
+          </View>
+          <View style={styles.inputContainer}>
+          <Text style={styles.inputHeading}>Enter Game Name:</Text>
+        <TextInput
+          style={styles.InputFieldGame}
+          inputMode="text"
+          onChangeText={(text) => {
+            setGameName(text)
+          }}
+          value={gameName}
+          placeholder="Enter name for the game"
+          />
+          </View>
       </View>
       <ScrollView>
         <View>
@@ -142,6 +157,9 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 50,
     textAlign: "center",
+  },
+  InputFieldGame:{
+      borderBottomWidth:1,
   },
   Button: {
     marginHorizontal: "auto",
